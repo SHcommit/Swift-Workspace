@@ -17,4 +17,13 @@ class SecondViewController : UIViewController{
     @IBAction func back(_ sender: Any) {
         self.presentingViewController?.dismiss(animated: true)
     }
+    
+    //디폴트 네비게이션 바 뒤로가기 버튼 말고!
+    //내가 그냥 구현하고 싶은데? ?
+    
+    
+    @IBAction func NavigationBack(_ sender: Any) {
+        self.navigationController?.popViewController(animated: true)
+    }
+    
 }
