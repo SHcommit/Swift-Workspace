@@ -39,12 +39,14 @@ class ViewController: UIViewController {
          Scene에 네비게이션 컨트롤러는 추가되있지 않음을 알 수 있다.
         */
     }
-    
+    //네비게이션 바 에서 구현한 버튼말고 그 아래 일반 Scene 에서 다음 화면으로 넘어가기  버튼(present)을 구현했다.
     @IBAction func movePresent(_ sender: Any) {
         guard let testUvc = self.storyboard?.instantiateViewController(withIdentifier: "SecondVC")else{
             return;
         }
         self.present(testUvc, animated: true);
     }
+    //이 결과 다음 화면으로 성공적으로 이동했을 때는 네비게이션 바와 자동 생성된 바 뒤로가기 버튼이 존재하지 않는다.
+    
 }
 
