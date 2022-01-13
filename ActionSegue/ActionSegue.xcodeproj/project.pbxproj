@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		155015E927907A1800E72ABA /* Scene2VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 155015E827907A1800E72ABA /* Scene2VC.swift */; };
 		155015EB27907B8F00E72ABA /* newSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 155015EA27907B8F00E72ABA /* newSegue.swift */; };
+		156E7BCC27907EDE006776F7 /* customSegueMainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156E7BCB27907EDE006776F7 /* customSegueMainVC.swift */; };
 		1586D8562790771F007B95EA /* newMainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1586D8552790771F007B95EA /* newMainVC.swift */; };
 		15D7061027906CFE004140B3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D7060F27906CFE004140B3 /* AppDelegate.swift */; };
 		15D7061227906CFE004140B3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D7061127906CFE004140B3 /* SceneDelegate.swift */; };
@@ -21,6 +22,7 @@
 /* Begin PBXFileReference section */
 		155015E827907A1800E72ABA /* Scene2VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scene2VC.swift; sourceTree = "<group>"; };
 		155015EA27907B8F00E72ABA /* newSegue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = newSegue.swift; sourceTree = "<group>"; };
+		156E7BCB27907EDE006776F7 /* customSegueMainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = customSegueMainVC.swift; sourceTree = "<group>"; };
 		1586D8552790771F007B95EA /* newMainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = newMainVC.swift; sourceTree = "<group>"; };
 		15D7060C27906CFE004140B3 /* ActionSegue.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ActionSegue.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		15D7060F27906CFE004140B3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -66,6 +68,7 @@
 				15D7061127906CFE004140B3 /* SceneDelegate.swift */,
 				15D7061327906CFE004140B3 /* ViewController.swift */,
 				15D7061527906CFE004140B3 /* Main.storyboard */,
+				156E7BCB27907EDE006776F7 /* customSegueMainVC.swift */,
 				155015EA27907B8F00E72ABA /* newSegue.swift */,
 				155015E827907A1800E72ABA /* Scene2VC.swift */,
 				1586D8552790771F007B95EA /* newMainVC.swift */,
@@ -150,6 +153,7 @@
 				15D7061427906CFE004140B3 /* ViewController.swift in Sources */,
 				15D7061027906CFE004140B3 /* AppDelegate.swift in Sources */,
 				155015EB27907B8F00E72ABA /* newSegue.swift in Sources */,
+				156E7BCC27907EDE006776F7 /* customSegueMainVC.swift in Sources */,
 				155015E927907A1800E72ABA /* Scene2VC.swift in Sources */,
 				1586D8562790771F007B95EA /* newMainVC.swift in Sources */,
 				15D7061227906CFE004140B3 /* SceneDelegate.swift in Sources */,
