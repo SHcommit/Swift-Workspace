@@ -8,8 +8,9 @@
 import UIKit
 import UserNotifications
 
+//UNUserNotificationCenterDelegate 프로토콜 추가.
 @main
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate , UNUserNotificationCenterDelegate {
 
 
     /*앱이 처음 시작 할 때호출하는 메서드.(디폴트 VC가 모바일 화면에 띄워지기 전에 실행된다.
@@ -22,10 +23,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
      */
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
         if #available(iOS 10.0, *){
-            let notiCenter = UNUserNotificationCenter.current();
+            let notiCenter = UNUserNotificationCenter.current(); //미리 알람 설정 환경 정의!
             
             notiCenter.requestAuthorization(options: [.alert, .badge, .sound]){(didAllow, e) in}
+            
+            notiCenter.delegate = self;
+            /*이제 앱 델리게이트 클래스는 사용자가 알림 메시지 클릭 이벤트 전달받을 수 있다.
+             *알림창에서 사용자가 이벤트를 발생시키면 appDelegate가 catch할 수 있다!!
+             *앱 델리게이트가 알림창의 이벤트를 감지 할 수 있게 됨.
+             
+             *앱 실행 도중 알림메세지 발생할 경우
+               userNotificationCenter(_:willPresent:withCompletionHandler:)메서드가 자동으로 호출된다.
+             *앱이 실행중이던 아니던 사용자가 알림 메세지에 대한 이벤트를 발생시킨 경우
+               userNotificationCenter(_:didReceive:withCompletionHandler:)
+             -> 이 메서드는 위에서 추가한 UNUserNotificationCenterDelegate 프로토콜에 정의되어 잇다.
+             */
         }else{
                 
         }
@@ -54,8 +68,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     {
         //여기에서 UN 프레임워크를 이용한 로컬 알림 동의 여부를 확인한다.
         if #available(iOS 10.0 , * ){
-            UNUserNotificationCenter.current().getNotificationSettings { settings in
-            if settings.authorizationStatus == UNAuthorizationStatus.authorized
+            UNUserNotificationCenter.current().getNotificationSettings { settings in //인자값으로 settings가.
+            if settings.authorizationStatus == UNAuthorizationStatus.authorized //만약 settings의 허가 상태가 허가됬다면? 아래 코드 실행.
             {
                 //알람 정보가 담긴 콘텐츠 인스턴스 생성.
                 let nContent = UNMutableNotificationContent();
@@ -71,6 +85,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 nContent.sound = UNNotificationSound.default
                 //로컬알림이 울릴 때 전달될 값이 있을 경우에 사용한다.
                 //앱 델리게이트에서 참조 가능하다.
+                //만약 사용자가 입력한 이벤트에 대한 이벤트함수를 구현할 때 특정 알림에 대한 name를 print하면 "길동이" 출력됨.
                 nContent.userInfo = ["name ": "길동이"]
                 
                 /*알림 발송 조건 객체
@@ -92,4 +107,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             //UILocalNotification 으로 알림 정의해야한다.
         }
     }
+    
+    //사용자로부터 발생된 알림창 이벤트 에대한 헨들러 메서드 구현해보자!
+    @available(iOS 10.0, *)
+    func userNotificationCenter(_ center : UNUserNotificationCenter, willPresent notification: UNNotification, withCompletioinHandler completionHandler: @escaping (UNNotificationPresentationOptions)->Void){
+        if notification.request.identifier == "wakeup" { //아까 위에서 구현한 알람 요청 인스턴스 식별 ID를 구현한 알림 식별함.
+            let userInfo = notification.request.content.userInfo; //사용자가 커스텀 한 정보 읽어와서 함수 내 지역변수에 저장
+            print(userInfo["name"]!) //위에서 userInfo에 정의된 name에 대한 길동이 출력!
+        }
+        completionHandler([.alert, .badge, .sound])
+    }
+    
+    @available(iOS 10.0, *)
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        if response.notification.request.identifier == "wakeup"{
+            let userInfo = response.notification.request.content.userInfo
+            print(userInfo["name"]!)
+        }
+        completionHandler();
+    }
+    //두번째 외부 매개변수 명을 보면 willPresent 앱이 실행 중일 때 알림 메세지가 도착한다면, 알림 배너 표시관계 상관없이 userNotification메서드가 실행된다.
+    //두번째 외부 매개변수 명이 didReceive는 입이 실행 중 일 때, 발생된 알림창을 사용자가 클릭 이벤트를 발생하면 willPresent메서드가 실행된다.
+    //알림 메세지에 대한 인스턴스는 두번째 인작값 responsive, notification에 전달된다.!
+    //따라서 didRecenve 인자값의 함수일 경우 사용자가 특정 이벤트를 발생시키면 이에 대한 기능을 userNotificationCenter(_ :  didReceive :...)에서 구현하면 된다.
 }
