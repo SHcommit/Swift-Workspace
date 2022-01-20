@@ -3,8 +3,20 @@
 //  UserNotification-msg
 //
 //  Created by 양승현 on 2022/01/20.
-//
 
+/*  UserNorification 프레임워크에서 중요한 클래스
+ *  UNMutableNotificationContent
+        알림 정보에 대한 기본적인 속성을 이 클래스에 담는다.
+        Mutable 이라는 단어의 뜻은 "값이 변할 수 있는" 즉 이 클래스를 통해서 값을 설정할 수 있다.
+        UNNotificationContent는 읽기 전용이다.
+ *  UNTimeIntervalNotificationTrigger
+        몇분 뒤에 보낼지, 특정 시각을 설정할 수 있다.
+ *  UNNotificationRequest
+        알림 발송 조건 객체를 인자값으로 하는 알림요청 '객체'를 만든다.
+ *  UNUserNotificationCenter
+        -싱글턴 방식(static class)
+        current()메서드를 통해 참조 정보를 받을 수 있다.
+ */
 import UIKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
