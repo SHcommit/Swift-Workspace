@@ -21,6 +21,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate , UNUserNotificationCenter
      
      *requestAuthorization()이 메서드를 통해 사용자로부터 알람 설정 승인여부를 물어볼 수 있다.
      */
+    /*
+     *앱 실행 도중 알림메세지 발생할 경우
+       userNotificationCenter(_:willPresent:withCompletionHandler:)메서드가 자동으로 호출된다.
+     *앱이 실행중이던 아니던 사용자가 알림 메세지에 대한 이벤트를 발생시킨 경우
+       userNotificationCenter(_:didReceive:withCompletionHandler:)
+     -> 이 메서드는 위에서 추가한 UNUserNotificationCenterDelegate 프로토콜에 정의되어 잇다.
+     */
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
@@ -33,15 +40,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate , UNUserNotificationCenter
             /*이제 앱 델리게이트 클래스는 사용자가 알림 메시지 클릭 이벤트 전달받을 수 있다.
              *알림창에서 사용자가 이벤트를 발생시키면 appDelegate가 catch할 수 있다!!
              *앱 델리게이트가 알림창의 이벤트를 감지 할 수 있게 됨.
-             
-             *앱 실행 도중 알림메세지 발생할 경우
-               userNotificationCenter(_:willPresent:withCompletionHandler:)메서드가 자동으로 호출된다.
-             *앱이 실행중이던 아니던 사용자가 알림 메세지에 대한 이벤트를 발생시킨 경우
-               userNotificationCenter(_:didReceive:withCompletionHandler:)
-             -> 이 메서드는 위에서 추가한 UNUserNotificationCenterDelegate 프로토콜에 정의되어 잇다.
              */
         }else{
-                
+            /*
+             *Date : 20.01.21
+             *UILocalNotification
+             */
+            let setting = UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
+            application.registerUserNotificationSettings(setting)// 어플리케이션에 위에서 선언한 알림 인스턴스를 추가하는 코드.
         }
         return true
     }
@@ -105,6 +111,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate , UNUserNotificationCenter
             }
         }else{ //iOS  9이하는 UserNotification 프레임워크 적용 안된다!
             //UILocalNotification 으로 알림 정의해야한다.
+            let setting = application.currentUserNotificationSettings //알림 설정값 읽어온다.(인스턴스)
+            guard setting?.types != .none else { // 사용자가 알림 여부 파악
+                print("작동안함")
+                return
+            }
+            let noti = UILocalNotification() //로컬알림의 새 인스턴스 생성하고 !! 아래 코드를 통해 인스턴스 속성 정의후!!
+            noti.fireDate = Date(timeIntervalSinceNow :10) //10초후 발송
+            noti.timeZone = TimeZone.autoupdatingCurrent //현재 시간을 바탕으로 자동 업데이트.
+            noti.alertBody = "얼릉 다시 접속해!!"
+            noti.applicationIconBadgeNumber = 1 //앱 뱃지 알림 1로 설정
+            noti.soundName = UILocalNotificationDefaultSoundName
+            noti.userInfo = ["name" : "길동이"]
+            
+            application.scheduleLocalNotification(noti)     //여기 application에 넣음으로써 iOS스케줄러에 등록이 된다.
+            
         }
     }
     
