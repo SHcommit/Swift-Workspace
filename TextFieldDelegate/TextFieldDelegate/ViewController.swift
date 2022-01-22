@@ -92,11 +92,7 @@ class ViewController: UIViewController , UITextFieldDelegate{
         print("텍스트 필드의 내용 삭제된다..")
         return true;
     }
-    //3
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        print("텍스트 필드 내용이 \(string)으로 변경된다.")
-        return true
-    }
+    //3번은 아래에 구현
     //4
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder() //Focus 해제
@@ -112,5 +108,29 @@ class ViewController: UIViewController , UITextFieldDelegate{
     func textFieldDidEndEditing(_ textField: UITextField) {
         print("텍스트 필드 편집 종료")
     }
+    
+    
+    //추가 구현 . 스위치 켜질때만 문자 입력 가능하게!
+    @IBOutlet var tfSwitch: UISwitch!
+    
+    //3
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        print("텍스트 필드 내용이 \(string)으로 변경된다.")
+        if (tfSwitch.isOn == true){
+            if Int(string) == nil { //문자는 숫자로 변환될 수 없기에 nil이다. 그럴경우 위의  함수 실행
+                if (textField.text?.count)! + string.count > 10{ //와,, 위에서 정의한 tf가 아니라 delegate로 등록된 UITextField에 대해서 인가?.
+                    return false
+                }else{
+                    return true;
+                }
+            }else{ //만약 문자가 숫자로 변환되었다면! 숫자로 간주하고 ,숫자는 tf창에 받지 않도록 설정!!
+                return false
+            }
+        }else{
+            return false
+        }
+    }
+    
 }
+
 
