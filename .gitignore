@@ -90,5 +90,5 @@ fastlane/test_output
 iOSInjectionProject/
 .DS_Store
 Base.lproj
-Info.plist
 Assets.xcassets
+Info.plist
