@@ -91,3 +91,4 @@ iOSInjectionProject/
 .DS_Store
 Base.lproj
 Assets.xcassets
+Info.plist
