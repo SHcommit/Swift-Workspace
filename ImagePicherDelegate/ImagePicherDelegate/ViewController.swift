@@ -13,7 +13,15 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
     }
-
+    
+    @IBOutlet var imgView: UIImageView!;
+    @IBAction func imgPick(_ sender: Any){
+        let picker = UIImagePickerController()
+        picker.sourceType = .photoLibrary;
+        picker.allowsEditing = true;
+        
+        self.present(picker, animated: false);
+    }
 
 }
 
