@@ -97,4 +97,36 @@ completely CREAZEBABLE.
      *고로 에러다. 배열은 함수가 될 수 없다.
      *따라서 클로저의 끝 { ... }에 } ( )를 달아 주어야 클로저가 실행된 reutrn 값이 배열 프로퍼티에 저장될 것이다.
      */
+    
+    override func viewDidLoad(){
+        print("테이블 뷰 실행됬다면. 출력해줘..")
+    }
+    
+    //테이블 뷰 행 개수 반환.
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.list.count;
+    }
+    /**
+     *테이블 뷰 각 셀 설정*
+     *이 메서드가 한번 호출 될 때마다 하나의 행이 만들어 진다.
+     *indexPath를 통해 몇 번째 행을 구성햐아 하는지 알 수 있다.
+     *이 함수는 화면에 표현해야 할 목록 수 만큼 이 메서드가 반복적으로 호출된다.
+     *행 번호를 알고 싶을 때 .row 쓰면된다.
+     */
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let row = self.list[indexPath.row]
+        
+        // 재사용 큐를 통해 셀 인스턴스 가져옴
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ListCell")!
+        //guard나 조건문 붙이지 않고 옵셔널 체인 쓰면 nil이나 옵셔널 이외의 값이 발생하면 그냥 아래 코드 다음코드로 넘어감.
+        cell.textLabel?.text = row.title
+        return cell
+    }
+    
+    //사용자가 특정 목록 중에서 특정 행을 선택 했을 때 didSelsectRowAt매개변수를 갖는 tableView가 호출된다.
+    
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        NSLog("선택된 행은 \(indexPath.row) 번째 행입니다.")
+    }
 }
