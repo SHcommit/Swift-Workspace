@@ -14,4 +14,5 @@ class BookIbVO{
     var author: String? //저자
     var genre: String? //장르
     var rating: Int? //평점
+    var subImg : String? //이미지 저장 이름.
 }
