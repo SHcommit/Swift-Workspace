@@ -49,10 +49,10 @@ completely CREAZEBABLE.
     // 더 나은 방식을 찾아야한다.
     // 아래와 같은 방식이다.. (대박임)
     var dataset = [
-        ("커리어 스킬","존 슨메즈","완벽한 개발자 인생 로드맵","Computer Science",9),
-        ("Clean Code","로버트 C.마틴","이 책은 더 나은 코드를 만들려고 애쓰는 프로그래머, 소프트웨어 공학도, 프로젝트 관리자, 팀 리더, 시스템 분석가가 반드시 읽어야할 책이다.","Computer Science",9),
+        ("커리어 스킬","존 슨메즈","완벽한 개발자 인생 로드맵","Computer Science",9,"car.jpg"),
+        ("Clean Code","로버트 C.마틴","이 책은 더 나은 코드를 만들려고 애쓰는 프로그래머, 소프트웨어 공학도, 프로젝트 관리자, 팀 리더, 시스템 분석가가 반드시 읽어야할 책이다.","Computer Science",9,"clean.jpg"),
         ("ROALD DAHL MATILDA","Quentin Blake",
-"Make sure EVERYTHING YOU DO IS SO completely CREAZEBABLE.","Story",8)
+"Make sure EVERYTHING YOU DO IS SO completely CREAZEBABLE.","Story",8,"matil.jpg")
     ];
     
     /** 클래스를 배열로하는 list 변수 생성.
@@ -65,14 +65,14 @@ completely CREAZEBABLE.
      */
     lazy var list : [BookIbVO] = {
         var datalist = [BookIbVO]()
-        for (title,detail,author,genre,rating) in self.dataset{
+        for (title,detail,author,genre,rating, subImg) in self.dataset{
             let book = BookIbVO();
             book.title = title
             book.author = detail
             book.detail = author
             book.genre = genre
             book.rating = rating
-            
+            book.subImg = subImg;
             datalist.append(book)
         }
         return datalist
@@ -154,14 +154,19 @@ completely CREAZEBABLE.
          *모든 객체를 불러올 수 단 하나의 메서드로 불러오기에 반환타입은 UIView이다.
          *이래서 다운캐스팅을 하는구나..크으 신기하네
          */
+        //여기서 태그 대신 @IBOutlet을 사용하고 싶을 때 UITableViewCell을 상속받는 클래스 선언하고,
+        //세그웨이 방식으로 연결해서, 위에선언한 cell변수의 기능은 원래 있던 태이블 뷰의 특정 Cell을 인스턴스화 하는 것인데,
+        //우리는 UITableViewCell을 상속받고, 자식객체로 정의했으므로 위의 cell 구문 뒤에 as <자식객체> 연산자를 통해 다운 캐스팅을 해야한다.
         let title = cell.viewWithTag(101) as? UILabel;
         let decs = cell.viewWithTag(102) as? UILabel;
         let genre = cell.viewWithTag(103) as? UILabel;
         let rating = cell.viewWithTag(104) as? UILabel;
+        let subImg = cell.viewWithTag(105) as? UIImageView;
         title?.text = row.title
         decs?.text = row.detail;
         genre?.text = row.genre;
         rating?.text = "\(row.rating!)";
+        subImg?.image = UIImage(named: row.subImg!);
             
         return cell
     }
