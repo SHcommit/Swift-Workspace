@@ -4,10 +4,8 @@
 //
 //  Created by 양승현 on 2022/01/24.
 //
-
 import Foundation
 import UIKit
-
 
 class ListViewController : UITableViewController{
     //var list = [BookIbVO]()
@@ -104,32 +102,66 @@ completely CREAZEBABLE.
     
     //테이블 뷰 행 개수 반환.
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.list.count;
+    return self.list.count;
     }
-    /**
-     *테이블 뷰 각 셀 설정*
-     *이 메서드가 한번 호출 될 때마다 하나의 행이 만들어 진다.
-     *indexPath를 통해 몇 번째 행을 구성햐아 하는지 알 수 있다.
-     *이 함수는 화면에 표현해야 할 목록 수 만큼 이 메서드가 반복적으로 호출된다.
-     *행 번호를 알고 싶을 때 .row 쓰면된다.
-     */
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let row = self.list[indexPath.row]
+    
+   
+    
+    //case 1: 기존에 있던 title, subtitle 등으로 구현한 테이블 뷰
+    //case 2: custom table view
+    /*
+        /**
+         *테이블 뷰 각 셀 설정*
+         *이 메서드가 한번 호출 될 때마다 하나의 행이 만들어 진다.
+         *indexPath를 통해 몇 번째 행을 구성햐아 하는지 알 수 있다.
+         *이 함수는 화면에 표현해야 할 목록 수 만큼 이 메서드가 반복적으로 호출된다.
+         *행 번호를 알고 싶을 때 .row 쓰면된다.
+         */
+        override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+            let row = self.list[indexPath.row]
         
-        // 재사용 큐를 통해 셀 인스턴스 가져옴
+            // 재사용 큐를 통해 셀 인스턴스 가져옴
+            let cell = tableView.dequeueReusableCell(withIdentifier: "ListCell")!
+            //guard나 조건문 붙이지 않고 옵셔널 체인 쓰면 nil이나 옵셔널 이외의 값이 발생하면 그냥 아래   코드 다음코드로 넘어감.
+            cell.textLabel?.text = row.title
+            return cell
+        }
+    
+        //사용자가 특정 목록 중에서 특정 행을 선택 했을 때 didSelsectRowAt매개변수를 갖는 tableView가 호출된다.
+      
+    
+    */
+    /*
+     custom prototype cell
+     */
+    override func tableView(_ tableView: UITableView, cellForRowAt indexpath: IndexPath)->UITableViewCell{
+        //위 메서드 호출될때마다 특정 행에 해당하는 데이터 (클래스 타입) 배열을 row 저장.
+        let row = self.list[indexpath.row];
         let cell = tableView.dequeueReusableCell(withIdentifier: "ListCell")!
-        //guard나 조건문 붙이지 않고 옵셔널 체인 쓰면 nil이나 옵셔널 이외의 값이 발생하면 그냥 아래 코드 다음코드로 넘어감.
-        cell.textLabel?.text = row.title
+            
+        /**
+         *커스텀 type로 셀 지정시 cell에 속한 레이블에 클래스로부터 값을 연결시키는 방법
+         *1. 레이블의 인스펙터 탭 ->Tag에서 특정 레이블의 값을 지정한다.
+         *2.레이블을 특정 클래스와 연관된 @IBOutlet 변수를 만든다.
+         *아래의 상황은 어트리뷰트 인스펙터 탭에서 입력한 태그 속성을 바탕으로, 프로토타입 셀에 추가된 특정 label을 변수화한다.
+         *프로토타입 셀에 추가된 특정레이블을 인식하고 소스코드로 읽어오기 위해선 Tag에 부여한 값과,
+         * .viewWithTag() 메서드가 필요하다.
+         *키야 .viewWithTag()메서드로  이미지, 버튼, 스위치 버튼 등 객체 대부분을 소스코드로 불러올 수 있다.
+         *모든 객체를 불러올 수 단 하나의 메서드로 불러오기에 반환타입은 UIView이다.
+         *이래서 다운캐스팅을 하는구나..크으 신기하네
+         */
+        let title = cell.viewWithTag(101) as? UILabel;
+        let decs = cell.viewWithTag(102) as? UILabel;
+        let genre = cell.viewWithTag(103) as? UILabel;
+        let rating = cell.viewWithTag(104) as? UILabel;
+        title?.text = row.title
+        decs?.text = row.detail;
+        genre?.text = row.genre;
+        rating?.text = "\(row.rating!)";
+            
         return cell
     }
-    
-    //사용자가 특정 목록 중에서 특정 행을 선택 했을 때 didSelsectRowAt매개변수를 갖는 tableView가 호출된다.
-    
-    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         NSLog("선택된 행은 \(indexPath.row) 번째 행입니다.")
     }
-    /*
-     custom prototype celll
-     */
 }
