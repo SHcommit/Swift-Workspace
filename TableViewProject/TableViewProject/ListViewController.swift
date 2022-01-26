@@ -107,8 +107,7 @@ completely CREAZEBABLE.
     
    
     
-    //case 1: 기존에 있던 title, subtitle 등으로 구현한 테이블 뷰
-    //case 2: custom table view
+    //아래 주석은 디폴트 설정에 있는 table View Cell에 대한 구현코드입니다.
     /*
         /**
          *테이블 뷰 각 셀 설정*
