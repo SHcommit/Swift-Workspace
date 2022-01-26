@@ -114,12 +114,22 @@ completely CREAZEBABLE.
      *행 번호를 알고 싶을 때 .row 쓰면된다.
      */
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        //리스트에있는 특정 bookIbVO인스턴스  row에 저장!
         let row = self.list[indexPath.row]
         
         // 재사용 큐를 통해 셀 인스턴스 가져옴
         let cell = tableView.dequeueReusableCell(withIdentifier: "ListCell")!
         //guard나 조건문 붙이지 않고 옵셔널 체인 쓰면 nil이나 옵셔널 이외의 값이 발생하면 그냥 아래 코드 다음코드로 넘어감.
+        
+        //제목은 textLabel 속성이다.
         cell.textLabel?.text = row.title
+        
+        /**subTitle, rightDetail, leftDetail 모두 detailTextLabel 속성이다.
+        *하지만 subTitle만 두 줄로 분리되어 표시된다.
+        *지금은 tableView.dequeueReusable(withIdentifier:)메서드를 통해 생성된 특정 셀 인스턴스를 통해.
+        *설정된 subtitle의 내용을 표시해주는 코드이다.
+         */
+        cell.detailTextLabel?.text = row.detail;
         return cell
     }
     
