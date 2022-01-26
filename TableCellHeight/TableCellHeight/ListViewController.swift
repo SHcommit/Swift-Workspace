@@ -50,4 +50,42 @@ class ListViewController: UITableViewController{
      *텍스트 필드에 입력된 값이  list 배열에 저장된다.
      *이제 TableViewCell에 등록할 것이다.*
      */
+    
+    /**
+     * TableViewCell에 행을 추가하는 방법.
+     * 이 클래스는 UITableViewController를 상속받았다.
+     * 테이블 셀에 행을 추가 후 present하기 위해서는 UITableViewController 클래스에 정의 된 메서드를 추가적으로 구현해야 한다.
+     * 따라서 override 키워드를 붙인다.
+     * tableView메서드의 두번째 외부매개변수에 따라서,
+     * 1. numberOfRowsInSection  //몇개의 행을 추가할 것인가?
+     * 2. cellForRowAt (내부 매개변수 indexPath) //1에서 반환된 행의 개수만큼 2번의 메서드가 실행된다. 몇번째 행이 구현되는지는
+     * indexPath.row를 통해 알 수 있다. 여기서 cell의 인스턴스를 생성한다.(mainStoryboard에서 특정 cell을 정의한 identifier를 확인 할 수 있다.
+     * 3. 2가 끝난 후 print메서드를 쓴다. 끝
+     */
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.list.count;
+    }
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell") ?? UITableViewCell()
+        
+        cell.textLabel?.numberOfLines = 0
+        
+        cell.textLabel?.text = list[indexPath.row]
+        return cell
+    }
+    /**
+     *위에서 쓰인 ??연산자 는 Nil -Coalescing 연산자이다.
+     *a ?? b
+     *만약 a가 nil이 아닐 경우 옵셔널 해제, a ==nil일 경우 b 사용.
+     *=>    a != nil ? a! : b //삼항 연산자와 같음.
+     */
+    
+    //높이 제어해주는 메서드
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        let row = self.list[indexPath.row]
+        
+        //기본 높이 60 + 글자 길이 0~29 == 30 넘을때마다 20씩 높이 늘려준다. 와 대박;; 이렇게 하는구나
+        let height = CGFloat(60 + (row.count / 30) * 20)
+        return height
+    }
 }
