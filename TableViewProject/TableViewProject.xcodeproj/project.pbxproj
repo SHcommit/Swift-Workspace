@@ -13,9 +13,11 @@
 		152EA43D279EDF8100ACBA91 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 152EA43B279EDF8100ACBA91 /* Main.storyboard */; };
 		152EA43F279EDF8100ACBA91 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 152EA43E279EDF8100ACBA91 /* Assets.xcassets */; };
 		152EA442279EDF8100ACBA91 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 152EA440279EDF8100ACBA91 /* LaunchScreen.storyboard */; };
-		152F6DBA279FFF570099CD03 /* BookIb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 152F6DB9279FFF570099CD03 /* BookIb.swift */; };
 		158BDD7A279EE1D70030CEA0 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158BDD79279EE1D70030CEA0 /* ListViewController.swift */; };
 		15A3FEA527A13C7C009FDD09 /* BookIb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A3FEA427A13C7C009FDD09 /* BookIb.swift */; };
+		15A3FEB827A14CAF009FDD09 /* clean.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 15A3FEB527A14CAF009FDD09 /* clean.jpg */; };
+		15A3FEB927A14CAF009FDD09 /* car.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 15A3FEB627A14CAF009FDD09 /* car.jpg */; };
+		15A3FEBA27A14CAF009FDD09 /* matil.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 15A3FEB727A14CAF009FDD09 /* matil.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +32,9 @@
 		152F6DB9279FFF570099CD03 /* BookIb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookIb.swift; sourceTree = "<group>"; };
 		158BDD79279EE1D70030CEA0 /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 		15A3FEA427A13C7C009FDD09 /* BookIb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookIb.swift; sourceTree = "<group>"; };
+		15A3FEB527A14CAF009FDD09 /* clean.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = clean.jpg; sourceTree = "<group>"; };
+		15A3FEB627A14CAF009FDD09 /* car.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = car.jpg; sourceTree = "<group>"; };
+		15A3FEB727A14CAF009FDD09 /* matil.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = matil.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +67,7 @@
 		152EA434279EDF8100ACBA91 /* TableViewProject */ = {
 			isa = PBXGroup;
 			children = (
+				15A3FEB427A14CAF009FDD09 /* Resources */,
 				15A3FEA427A13C7C009FDD09 /* BookIb.swift */,
 				152EA435279EDF8100ACBA91 /* AppDelegate.swift */,
 				152EA437279EDF8100ACBA91 /* SceneDelegate.swift */,
@@ -74,6 +80,16 @@
 				152EA443279EDF8100ACBA91 /* Info.plist */,
 			);
 			path = TableViewProject;
+			sourceTree = "<group>";
+		};
+		15A3FEB427A14CAF009FDD09 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				15A3FEB527A14CAF009FDD09 /* clean.jpg */,
+				15A3FEB627A14CAF009FDD09 /* car.jpg */,
+				15A3FEB727A14CAF009FDD09 /* matil.jpg */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -136,7 +152,10 @@
 			files = (
 				152EA442279EDF8100ACBA91 /* LaunchScreen.storyboard in Resources */,
 				152EA43F279EDF8100ACBA91 /* Assets.xcassets in Resources */,
+				15A3FEB927A14CAF009FDD09 /* car.jpg in Resources */,
+				15A3FEBA27A14CAF009FDD09 /* matil.jpg in Resources */,
 				152EA43D279EDF8100ACBA91 /* Main.storyboard in Resources */,
+				15A3FEB827A14CAF009FDD09 /* clean.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
