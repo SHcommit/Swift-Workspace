@@ -81,11 +81,17 @@ class ListViewController: UITableViewController{
      */
     
     //높이 제어해주는 메서드
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+   /* override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let row = self.list[indexPath.row]
         
         //기본 높이 60 + 글자 길이 0~29 == 30 넘을때마다 20씩 높이 늘려준다. 와 대박;; 이렇게 하는구나
         let height = CGFloat(60 + (row.count / 30) * 20)
         return height
+    }*/
+    
+    //콘텐츠에 따라 자동으로 높이 조절
+    override func viewWillAppear(_ animated: Bool){
+        self.tableView.estimatedRowHeight = 50;
+        self.tableView.rowHeight = UITableView.automaticDimension ;
     }
 }
