@@ -48,12 +48,16 @@ completely CREAZEBABLE.
     //위의 과정을 보면 매번 데이터 정보를 클래스 매개변수 개별 복 붙한 후에 정의하는 방식보다
     // 더 나은 방식을 찾아야한다.
     // 아래와 같은 방식이다.. (대박임)
-    var dataset = [
-        ("커리어 스킬","존 슨메즈","완벽한 개발자 인생 로드맵","Computer Science",9,"car.jpg"),
-        ("Clean Code","로버트 C.마틴","이 책은 더 나은 코드를 만들려고 애쓰는 프로그래머, 소프트웨어 공학도, 프로젝트 관리자, 팀 리더, 시스템 분석가가 반드시 읽어야할 책이다.","Computer Science",9,"clean.jpg"),
-        ("ROALD DAHL MATILDA","Quentin Blake",
-"Make sure EVERYTHING YOU DO IS SO completely CREAZEBABLE.","Story",8,"matil.jpg")
-    ];
+    /**
+     ***Date : 20.02.03**
+     *REST API를 받아와 list의 원소를 추가하기 때문에 이제 아래에서 내가 정의한 dataset의 배열이 필요 없어졌다.*
+     */
+    //var dataset = [
+        //("커리어 스킬","존 슨메즈","완벽한 개발자 인생 로드맵","Computer Science",9,"car.jpg"),
+        //("Clean Code","로버트 C.마틴","이 책은 더 나은 코드를 만들려고 애쓰는 프로그래머, 소프트웨어 공학도, 프로젝트 관리자, 팀 리더, 시스템 분석가가 반드시 읽어야할 책이다.","Computer Science",9,"clean.jpg"),
+        //("ROALD DAHL MATILDA","Quentin Blake",
+//"Make sure EVERYTHING YOU DO IS SO completely CREAZEBABLE.","Story",8,"matil.jpg")
+    //];
     
     /** 클래스를 배열로하는 list 변수 생성.
      * list는 bookIbVO 타입을 리스트로하는 배열 이고, 초기화를 함수의 리턴으로 초기화를한다.
@@ -65,7 +69,11 @@ completely CREAZEBABLE.
      */
     lazy var list : [BookIbVO] = {
         var datalist = [BookIbVO]()
-        for (title,detail,author,genre,rating, subImg) in self.dataset{
+        /**
+         ***Date : 20.02.03**
+         *REST API를 받아와 list의 원소를 추가하기 때문에 위에서 정의한 dataset의 원소들을 for in 구문으로 추가하지 않아도 된다. 아래서 구현할 것이다.
+         */
+        /*for (title,detail,author,genre,rating, subImg) in self.dataset{
             let book = BookIbVO();
             book.title = title
             book.author = detail
@@ -74,7 +82,7 @@ completely CREAZEBABLE.
             book.rating = rating
             book.subImg = subImg;
             datalist.append(book)
-        }
+        }*/
         return datalist
     }()
     /**
@@ -95,10 +103,6 @@ completely CREAZEBABLE.
      *고로 에러다. 배열은 함수가 될 수 없다.
      *따라서 클로저의 끝 { ... }에 } ( )를 달아 주어야 클로저가 실행된 reutrn 값이 배열 프로퍼티에 저장될 것이다.
      */
-    
-    override func viewDidLoad(){
-        print("테이블 뷰 실행됬다면. 출력해줘..")
-    }
     
     //테이블 뷰 행 개수 반환.
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -144,8 +148,8 @@ completely CREAZEBABLE.
         let cell = tableView.dequeueReusableCell(withIdentifier: "ListCell")!
 
         /**
-         *커스텀 type로 셀 지정시 cell에 속한 레이블에 클래스로부터 값을 연결시키는 방법
-         *1. 레이블의 인스펙터 탭 ->Tag에서 특정 레이블의 값을 지정한다.
+         *커스텀 type로 셀 지정시 cell에 속한,  **내가 임의로 추가한 레이블**을 클래스에 저장된 row라고 하는( 위에서  튜플로 구성된 list 배열(타입: BookIbVO 클래스)의 한 클래스(한개의 책 정보) ) 특정 책 정보의 값과 연결시키는 방법
+         *1. **레이블**의 인스펙터 탭 ->Tag에서 특정 레이블의 값을 지정한다.
          *2.레이블을 특정 클래스와 연관된 @IBOutlet 변수를 만든다.
          *아래의 상황은 어트리뷰트 인스펙터 탭에서 입력한 태그 속성을 바탕으로, 프로토타입 셀에 추가된 특정 label을 변수화한다.
          *프로토타입 셀에 추가된 특정레이블을 인식하고 소스코드로 읽어오기 위해선 Tag에 부여한 값과,
@@ -173,4 +177,71 @@ completely CREAZEBABLE.
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         NSLog("선택된 행은 \(indexPath.row) 번째 행입니다.")
     }
+    /**
+     *API를 사용한 데이터 호출 방법
+     *   Date : 20.02.03
+     *
+     **to do : 1
+     *url 주소 string으로 받은 후
+     *URL(string:)을 통해 url 객체를 생성한다.
+     *REST API를 호출해서 응답 데이터를 apidata로 받아온다.
+     *      이때 Data(contentsOf:)를 통해 REST API가 호출되는데, 호출에 필요한 네트워크 주소는 URL객체가 인자값으로 전달되야 한다.
+     *로그 출력.
+     *      이때  Data는 우리가 알아볼 수 없는 형태이므로 NSString메서드를 통해 Encoding작업을 한다.
+     *
+     **to do: 2
+     *Data 타입으로 호출된 REST API(JSON)는 확인하기 어렵다. 따라서  NSDictionary형태로 변환 해야 한다.
+     *JSONObject포맷의 데이터와 호환되고,
+     *리스트 형태의 경우 JSONArray와 호환되는 NSArray로 사용해야한다.
+     *일반 문자열의 경우 String으로 사용해야한다.
+     *각각 호환되는 스위프트 자료형으로 **형 변환**을 해야 한다.
+     *
+     *jsonObject()의 경우 오류 발생시 예외를 던지므로 try catch문을 사용해야한다.
+     *NSDictionary, NSArray의 형태가 나올 수 있기에, Any타입으로 반환된다.
+     *      추후 내가 원하는 객체로 캐스팅해서 사용하자!
+     *apiDictionary를 통해 JSON 데이터를 참조할 수 있다.
+     *JSON에서 구성된 하위 노드의 정보를 얻기 위해서는 그에 상응하는 키 값을 사용해야 한다.
+     */
+     override func viewDidLoad() {
+         //to do: 1
+         let url = "http://115.68.183.178:2029/theater/list"
+         let apiURI: URL! = URL(string: url)
+         let apidata = try! Data(contentsOf: apiURI)
+         let log = NSString(data: apidata, encoding: String.Encoding.utf8.rawValue) ?? "";
+         NSLog("API Result =\( log )")
+            
+         //to do: 2
+         do{
+             //첫번째 인자값: 파싱할 데이터. 두번재 인자값 파싱 옵션(빈 배열 == 아무것도 없다.)
+             let apiDicitionary = try JSONSerialization.jsonObject(with: apidata,options: []) as! NSDictionary
+             //각각 apiDicitionary로 받은 JSON 데이터에 상응하는 키값을 호출한 후 인스턴스를 얻으면서,
+             //하위 데이터까지 참조할 수 있다. 다음은 각각 키값에 따른 하위 데이터를 호출하는 방법이다.
+             let hoppin = apiDicitionary["hoppin"] as! NSDictionary;
+             let movies = hoppin["movies"] as! NSDictionary;
+             let movie = movies["movie"] as! NSArray;
+                
+             for row in movie {
+                 /**
+                  *movie는 REST API를 통해 받아온 JSON 데이터의 가장 하위 데이터의 배열이다.
+                  *RESt API에 저장된 여러 영화,, movie라는 변수에 저장됬다. 이때 타입은 NSArray. 배열이다.
+                  *따라서 row는 그 배열의 첫 원소부터 movie.last까지. 한개씩 받아오는 것인데,
+                  *영화의 하위 데이터는  movieID, title, generIds, ratingAverage, participant 등 영화 정보와 관련된 내용이 저장되어있다.
+                  *이 중 필요한 부분, 내가 테이블 뷰의 셀에 호출시키기 위한 list에 값이 입력 되어 있어야 한다.
+                  *따라서 필요한 정보를 NSDictionary로 변환해, 키값에 맞는 데이터를 해당 list의 특정 mvo라는 인스턴스에 한개의 영화 정보를 저장 후 list.append(mvo)를 통해 정보를 저장한다.
+                  */
+                 let r = row as! NSDictionary;
+                    
+                 let mvo = BookIbVO()
+                 mvo.title = r["title"] as? String
+                 mvo.detail = r["genreNames"] as? String
+                 mvo.subImg = r["thumbnailImage"] as? String
+                 mvo.detail = r["linkUrl"] as? String
+                 mvo.rating = ((r["ratingAverage"] as! NSString).integerValue);
+                    
+                 self.list.append(mvo)
+             }
+         }catch { }
+         //이상하게 .. Info에서 http에 대한 설정 허가도 했는데, do 구문에서 끊긴다. 그 이전에
+         //NSLog도 호출이 되지 않는다..ㅠㅠ
+     }
 }
