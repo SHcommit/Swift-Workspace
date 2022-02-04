@@ -14,7 +14,7 @@ import Foundation
  *개봉일
  *평점
  */
-class MovieIO{
+class MovieVO{
     var thumbnail: String?
     var title: String?
     var description: String?
