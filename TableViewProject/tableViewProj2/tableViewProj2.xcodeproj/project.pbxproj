@@ -29,7 +29,7 @@
 		155983A527ACEE4D00279423 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		155983AB27ACF51200279423 /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 		155983AD27ACF6BE00279423 /* MovieIO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieIO.swift; sourceTree = "<group>"; };
-		155983AF27ACFFC000279423 /* MovieCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MovieCell.swift; path = tableViewProj2/MovieCell.swift; sourceTree = "<group>"; };
+		155983AF27ACFFC000279423 /* MovieCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -46,7 +46,6 @@
 		1559838B27ACEE4C00279423 = {
 			isa = PBXGroup;
 			children = (
-				155983AF27ACFFC000279423 /* MovieCell.swift */,
 				1559839627ACEE4C00279423 /* tableViewProj2 */,
 				1559839527ACEE4C00279423 /* Products */,
 			);
@@ -63,6 +62,7 @@
 		1559839627ACEE4C00279423 /* tableViewProj2 */ = {
 			isa = PBXGroup;
 			children = (
+				155983AF27ACFFC000279423 /* MovieCell.swift */,
 				1559839727ACEE4C00279423 /* AppDelegate.swift */,
 				1559839927ACEE4C00279423 /* SceneDelegate.swift */,
 				1559839B27ACEE4C00279423 /* ViewController.swift */,
