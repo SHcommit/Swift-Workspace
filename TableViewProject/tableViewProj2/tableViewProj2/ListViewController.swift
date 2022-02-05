@@ -16,7 +16,17 @@ class ListViewController : UITableViewController{
         //배열에 list에 저장된 튜플 개수만큼.
         return self.list.count
     }
-    //위에서 생성될 행 개수만큼 아래의 메서드가 실행된다. TableViewCell이 반환된다.
+    /**
+     *~~위에서 생성될 행 개수만큼 아래의 메서드가 실행된다. TableViewCell이 반환된다.~~
+     *난 tableView(_: numberOfRowsInSection:)에서 반환된 행 개수 만큼 아래의 tableView(_ : cellForRowAt)가 바로 호출되면서 테이블 셀들이 다 만들어 지는 것으로 알고 있었다.
+     *그래서 재사용 큐를 왜 쓰는지 제대로 이해하지 못했다.
+     *하지만 재사용 메커니즘을 공부하면서, 재사용 큐를 왜 사용하는지 명확하게 알게 되었다.
+     *아무리 많은 API의 데이터 소스를 테이블 셀에 추가하는 코드를 작성해도, 뷰에서 보여지는 특정 테이블 셀의 개수만큼만 tableView(_: cellForRowAt)메서드가 실행된다.
+     *나머지는 대기 상태이다. 만들어지지 않는다.
+     *추후 사용자의 스크롤 이벤트가 발생 시 보이지 않는 셀이 추가되어야 할 때 tableView(_: cellForRowAt)메서드가 발생한다.
+     *그럼 그만큼의 추가 생성과 동시에 이전에 생성됬지만, 뷰에서 사라진 이전의 셀들은? 테이블 뷰에서 삭제된다!!!
+     *그러나 재사용 큐에 등록이 된다. (정말 신기한 것 같다..)
+     */
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         //몇번째 행인지, indexPath.row를 통해 알 수 있다. 특정한 튜플을 row 프로퍼티에 저장
         let row = self.list[indexPath.row]
