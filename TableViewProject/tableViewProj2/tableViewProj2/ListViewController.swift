@@ -58,12 +58,15 @@ class ListViewController : UITableViewController{
         self.callMovieAPI()
     }
     
+    @IBOutlet var moreBtn: UIButton!
     
     @IBAction func more(_ sender: Any) {
         self.page += 1
         self.callMovieAPI()
         self.tableView.reloadData();
     }
+    
+    
     func callMovieAPI(){
         let url = "http://115.68.183.178:2029/hoppin/movies?order=releasedateasc&count=10&page=1&version=1&genreId="
         let apiURI: URL! = URL(string: url)
@@ -80,6 +83,8 @@ class ListViewController : UITableViewController{
             let hoppin = apiDicitionary["hoppin"] as! NSDictionary
             let movies = hoppin["movies"] as! NSDictionary
             let movie = movies["movie"] as! NSArray
+            
+            var totalCount = (hoppin["totalCount"] as? NSString)!.integerValue
             
             /**
              * r 변수란? movie -> REST API로 정의된 JSON 데이터의 하위 데이테인, movie배열에 Dictionary를 한개의 원소로하는 movie배열의 한 원소 타입 : Dictionary인 한개의 원소이다.
@@ -98,6 +103,10 @@ class ListViewController : UITableViewController{
                 mvo.rating = ((r["ratingAverage"] as! NSString).doubleValue)
                 //초기에 여기서 JOSN객체의 movie배열의 원소만큼 list에 추가하면, 이제 tableView메서드들이 호출된다.
                 self.list.append(mvo)
+                totalCount = 25 ; //원래 REST API에 저장된 totalCount == 4266개이다.
+                if self.list.count >= totalCount {
+                    self.moreBtn.isHidden = true;
+                }
             }
         }catch {
             NSLog("error!")
