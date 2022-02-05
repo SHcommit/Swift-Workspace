@@ -38,4 +38,14 @@ class ListViewController : UITableViewController{
         self.tableView.estimatedRowHeight = 50
         self.tableView.rowHeight = UITableView.automaticDimension
     }
+    /* ====   REST API를 사용한 화면 구현   ==== */
+    override func viewDidLoad(){
+        let url = "http://115.68.183.178:2029/hoppin/movies?order=releasedateasc&count=10&page=1&version=1&genreId="
+        let apiURI: URL! = URL(string: url)
+        
+        let apidata = try! Data(contentsOf: apiURI)
+        
+        let log = NSString(data: apidata, encoding: String.Encoding.utf8.rawValue) ?? ""
+        NSLog("API Result = \(log)")
+    }
 }
