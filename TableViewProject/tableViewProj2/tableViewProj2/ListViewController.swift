@@ -9,6 +9,7 @@ import Foundation
 import UIKit
 
 class ListViewController : UITableViewController{
+    var page = 1;
     var list = [MovieVO]();
     //iOS에 몇개의 행을 생성할 건지 알려주는 메서드. 생성할 행 개수 반환함.
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -29,17 +30,41 @@ class ListViewController : UITableViewController{
         cell.opendate?.text = row.opendate
         cell.rating?.text = "\(row.rating!)"
         
+        
+        //썸네일은 JSON데이터에 특정 url이 있다. 이를 받아와야한다.
+        let url: URL! = URL(string: row.thumbnail!)
+        let imageData = try! Data(contentsOf: url)
+        
+        cell.thumbnail?.image = UIImage(data: imageData)
+        
         return cell
     }
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         NSLog("선택된 행은 \(indexPath.row) 번째 행입니다.")
     }
-    override func viewWillAppear(_ animated: Bool) {
-        self.tableView.estimatedRowHeight = 50
+    //self sizing
+    /*override func viewWillAppear(_ animated: Bool) {
+        self.tableView.estimatedRowHeight = 85
         self.tableView.rowHeight = UITableView.automaticDimension
     }
+    */
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return CGFloat(80)
+    }
+    
+    
     /* ====   REST API를 사용한 화면 구현   ==== */
     override func viewDidLoad(){
+        self.callMovieAPI()
+    }
+    
+    
+    @IBAction func more(_ sender: Any) {
+        self.page += 1
+        self.callMovieAPI()
+        self.tableView.reloadData();
+    }
+    func callMovieAPI(){
         let url = "http://115.68.183.178:2029/hoppin/movies?order=releasedateasc&count=10&page=1&version=1&genreId="
         let apiURI: URL! = URL(string: url)
         
@@ -47,5 +72,35 @@ class ListViewController : UITableViewController{
         
         let log = NSString(data: apidata, encoding: String.Encoding.utf8.rawValue) ?? ""
         NSLog("API Result = \(log)")
+        /**
+         *hoppin과 movies와 movie는 JSON 데이터의 특정 상위 노드?의 인스턴스를 얻기위한 방법 같은데...
+         */
+        do{
+            let apiDicitionary = try JSONSerialization.jsonObject(with: apidata, options: []) as! NSDictionary;
+            let hoppin = apiDicitionary["hoppin"] as! NSDictionary
+            let movies = hoppin["movies"] as! NSDictionary
+            let movie = movies["movie"] as! NSArray
+            
+            /**
+             * r 변수란? movie -> REST API로 정의된 JSON 데이터의 하위 데이테인, movie배열에 Dictionary를 한개의 원소로하는 movie배열의 한 원소 타입 : Dictionary인 한개의 원소이다.
+             * 따라서 row as! NSDictionary로 캐스팅하는 것이다.
+             * 그 후 Dictionary의 키값을 호출하면 그에 해당하는 영화 정보를 얻을 수 있다.
+             */
+            for row in movie{
+                let r = row as! NSDictionary
+                
+                let mvo = MovieVO()
+                
+                mvo.title = r["title"] as? String
+                mvo.description = r["genreNames"] as? String
+                mvo.thumbnail = r["thumbnailImage"] as? String
+                mvo.detail = r["linkUrl"] as? String
+                mvo.rating = ((r["ratingAverage"] as! NSString).doubleValue)
+                //초기에 여기서 JOSN객체의 movie배열의 원소만큼 list에 추가하면, 이제 tableView메서드들이 호출된다.
+                self.list.append(mvo)
+            }
+        }catch {
+            NSLog("error!")
+        }
     }
 }
