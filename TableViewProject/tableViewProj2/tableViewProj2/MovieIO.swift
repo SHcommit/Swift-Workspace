@@ -6,6 +6,8 @@
 //
 
 import Foundation
+import UIKit
+
 /**
  *섬네일
  *제목
@@ -13,6 +15,8 @@ import Foundation
  *상세 정보
  *개봉일
  *평점
+ *UIImage썸네일
+ *  그러니까 
  */
 class MovieVO{
     var thumbnail: String?
@@ -21,4 +25,5 @@ class MovieVO{
     var detail : String?
     var opendate: String?
     var rating: Double?
+    var thumbnailImage: UIImage?
 }
