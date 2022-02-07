@@ -42,11 +42,20 @@ class ListViewController : UITableViewController{
         
         
         //썸네일은 JSON데이터에 특정 url이 있다. 이를 받아와야한다.
-        let url: URL! = URL(string: row.thumbnail!)
-        let imageData = try! Data(contentsOf: url)
-        
-        cell.thumbnail?.image = UIImage(data: imageData)
-        
+        /**
+         ~~let url: URL! = URL(string: row.thumbnail!)
+          let imageData = try! Data(contentsOf: url)
+          cell.thumbnail?.image = UIImage(data: imageData)~~
+         *매번 이미지 불러오는 것은 비효율적이다.
+         *따라서 DP방식으로 처음 불러오는 것 이외에는 list배열에서 호출하면 된다.*
+        */
+        //cell.thumbnail.image = row.thumbnailImage
+        //이미지 비동기 처리.
+        DispatchQueue.main.async(execute: {
+            print("\(indexPath.row)번째 list의 moviVO.thumbmailImage 비동기 처리됨.")
+            return cell.thumbnail.image = self.getThumbnailImage(indexPath.row);
+        })
+        print("\(indexPath)번째 cell 만들어짐")
         return cell
     }
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -111,6 +120,15 @@ class ListViewController : UITableViewController{
                 mvo.thumbnail = r["thumbnailImage"] as? String
                 mvo.detail = r["linkUrl"] as? String
                 mvo.rating = ((r["ratingAverage"] as! NSString).doubleValue)
+                /**
+                 *이미지는 용량이 크기 때문에 비동기 방식으로 그때 그때 tableView(_:cellForRowAt:)메서드가 호출 된 이후에 비동기 처리를 해야 매끄럽다.!!!
+                 *따라서 아래 정의된 getThumbnailImage(_:)메서드를 통해 추가 정의할 것이다.
+                ~~
+                let url: URL! = URL(string: mvo.thumbnail!);
+                let ImageData = try! Data(contentsOf: url)
+                mvo.thumbnailImage = UIImage(data:ImageData);
+                 ~~
+                */
                 //초기에 여기서 JOSN객체의 movie배열의 원소만큼 list에 추가하면, 이제 tableView메서드들이 호출된다.
                 self.list.append(mvo)
                 totalCount = 25 ; //원래 REST API에 저장된 totalCount == 4266개이다.
@@ -120,6 +138,18 @@ class ListViewController : UITableViewController{
             }
         }catch {
             NSLog("error!")
+        }
+    }
+    func getThumbnailImage(_ index: Int) -> UIImage{
+        let mvo = self.list[index]
+        if let savedImage = mvo.thumbnailImage{
+            return savedImage
+        }else{
+            let url: URL! = URL(string: mvo.thumbnail!);
+            let imageData = try! Data(contentsOf: url)
+            mvo.thumbnailImage = UIImage(data:imageData)
+            
+            return mvo.thumbnailImage!
         }
     }
 }
