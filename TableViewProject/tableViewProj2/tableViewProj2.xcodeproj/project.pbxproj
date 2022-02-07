@@ -16,6 +16,7 @@
 		155983AC27ACF51200279423 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 155983AB27ACF51200279423 /* ListViewController.swift */; };
 		155983AE27ACF6BE00279423 /* MovieIO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 155983AD27ACF6BE00279423 /* MovieIO.swift */; };
 		155983B027ACFFC000279423 /* MovieCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 155983AF27ACFFC000279423 /* MovieCell.swift */; };
+		15A1185927B152C2000D17CD /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A1185827B152C2000D17CD /* DetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		155983AB27ACF51200279423 /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 		155983AD27ACF6BE00279423 /* MovieIO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieIO.swift; sourceTree = "<group>"; };
 		155983AF27ACFFC000279423 /* MovieCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCell.swift; sourceTree = "<group>"; };
+		15A1185827B152C2000D17CD /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +69,7 @@
 				1559839927ACEE4C00279423 /* SceneDelegate.swift */,
 				1559839B27ACEE4C00279423 /* ViewController.swift */,
 				1559839D27ACEE4C00279423 /* Main.storyboard */,
+				15A1185827B152C2000D17CD /* DetailViewController.swift */,
 				155983A027ACEE4D00279423 /* Assets.xcassets */,
 				155983A227ACEE4D00279423 /* LaunchScreen.storyboard */,
 				155983A527ACEE4D00279423 /* Info.plist */,
@@ -153,6 +156,7 @@
 				1559839827ACEE4C00279423 /* AppDelegate.swift in Sources */,
 				155983AC27ACF51200279423 /* ListViewController.swift in Sources */,
 				1559839A27ACEE4C00279423 /* SceneDelegate.swift in Sources */,
+				15A1185927B152C2000D17CD /* DetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
