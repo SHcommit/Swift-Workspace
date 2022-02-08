@@ -153,3 +153,29 @@ class ListViewController : UITableViewController{
         }
     }
 }
+// MARK: - 화면 전환 시 값을 넘겨주기 위한 세그웨이 관련 처리
+/**
+ *prepare(for:sender:)
+ *  - segue가 실행되기 전에 이 메서드가 먼저 실행된다.
+ *  - 화면이 전환되기 전에 선택된 영화 정보를 넘겨주기 위한 메서드.
+ *  - "segue_detail" identifier를 갖는 segue를 통해 화면이 전환 될 때 iOS시스템에서 자동으로 호출하는 메서드이다.
+ *첫번째 매개변수 = 실행된 세그웨이 자체.
+ *두번째 매개변수 = 세그웨이를 실행한 객체 정보.
+ ***모든 segue가 이 메서드를 호출하기에 어떤 세그웨이가 실행될지 id값을 통해 찾아야 한다.**
+ *첫번째 매개변수 segue
+ *  - segue 변수에는 **출발지 segue.source, 목적지 segue.destination 속성이** 있다. 이들은 각각의 뷰 컨트롤러에 대해서
+ *  - UIViewController 타입으로 반환하기에 특정 클래스에 맞게 다운 캐스팅을 하면 쉽게 VC인스턴스를 얻을 수 있다.
+ *두번째 매개변수 sender
+ *  - 세그웨이를 시전한 객체 ex 버튼, 뷰 컨트롤러 etc. 여러 객체에서 호출할 수 있기에 Any ? 타입이다.
+ *         - 따라서 sender 매개변수를 사용하기 위해서는 캐스팅을 해야한다.
+ */
+extension ListViewController{
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?){
+        if segue.identifier == "segue_detail"{
+            let path = self.tableView.indexPath(for: sender as! MovieCell)
+            
+            let detailVC = segue.destination as? DetailViewController
+            detailVC?.mvo = self.list[path!.row]
+        }
+    }
+}
