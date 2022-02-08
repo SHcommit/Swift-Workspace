@@ -28,7 +28,29 @@ class DetailViewController : UIViewController{
         NSLog("linkUrl = \(self.mvo.detail!), title = \(self.mvo.title!)");
         let navibar = self.navigationItem
         navibar.title = self.mvo.title;
-        
+        if let url = self.mvo.detail {
+            if let urlObj = URL(string: url){
+                let req = URLRequest(url: urlObj);
+                self.webView.load(req);
+            }else{
+                let alert = UIAlertController(title: "오류", message: "mvo.detail의 Url이 잘못 되었습니다.", preferredStyle: .alert)
+                //UIAlertAction의 세번째 매개변수는 이함수가 작동 됬을때 실행 될 구문이다. (클로저 사용)
+                alert.addAction(UIAlertAction(title: "확인", style: .cancel){
+                    (_) in
+                    //VC뒤로가기
+                    _ = self.navigationController?.popViewController(animated: true)
+                })
+                //alert 또한 하나의 UIViewController이기 때문에 present(_, animated:completion:)메서드를 통해 가려주어야한다.
+                self.present(alert, animated: false, completion: nil)
+            }
+        }else{
+            let alert = UIAlertController(title: "오류", message: "잘못된 url 피라미터 값입니다.", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "확인", style: .cancel){
+                (_) in
+                _ = self.navigationController?.popViewController(animated: true)
+            })
+            self.present(alert, animated: false, completion: nil)
+        }
         let url = URL(string:self.mvo.detail!)
         let req = URLRequest(url: url!)
         self.webView.load(req)
