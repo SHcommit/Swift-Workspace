@@ -14,7 +14,19 @@ import UIKit
 class TheaterListController: UITableViewController {
     var list = [NSDictionary]()
     var startPoint = 0;
-    
+    /**
+     *NSString(contentsOf:encoding:)
+     *  - 첫번째 매개변수로 URL 인스턴스를 받는다.
+     *      URL은 URL(string:)을 통해 특정 url을 인스턴스화 할 수 있다.*
+     *  - 두번째 매개변수로 16진수값이 사용되었다. EUC-KR형식의 특정 인코딩을 했다.
+     *    이에 대한 데이터를 NSString의 두번째 매개변수를 통해 인코딩을 해 **문자열**로 반환받는다.
+     *데이터 처리된 stringdata 문자열을 다시 UTF-8 인코딩 처리를 하여(영화관 차트가 UTF-8이기 때문) Data 타입으로 바꾸어야 한다.
+     *      NSString.data(using: Int타입)
+     *          String.Encoding.utf8 //을 통해 UTF-8타입으로 바꾸고 utf8.rawValue를 통해 int형으로 바꾼다.
+     *              이제 Data 타입으로 바뀌었다.
+     *특정 Data는 이제 우리가 다룰 수 있는 배열로 파싱할 수 있다.
+     *  JSONSerialization.jsonObject(whth:options:)의 두번째 매개변수를 [] 배열로 하여 배열로 바꿀 수 있다.
+     */
     func callTheaterAPI(){
         var sList = 100;
         let requestAPI = "http://swiftapi.rubypaper.co.kr:2029/theater/list"
