@@ -16,6 +16,11 @@
 		155983AC27ACF51200279423 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 155983AB27ACF51200279423 /* ListViewController.swift */; };
 		155983AE27ACF6BE00279423 /* MovieIO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 155983AD27ACF6BE00279423 /* MovieIO.swift */; };
 		155983B027ACFFC000279423 /* MovieCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 155983AF27ACFFC000279423 /* MovieCell.swift */; };
+		1588383B27B4B39400DE0592 /* Listbullets.png in Resources */ = {isa = PBXBuildFile; fileRef = 1588383627B4B39400DE0592 /* Listbullets.png */; };
+		1588383C27B4B39400DE0592 /* darknight.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1588383727B4B39400DE0592 /* darknight.jpg */; };
+		1588383D27B4B39400DE0592 /* secret.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1588383827B4B39400DE0592 /* secret.jpg */; };
+		1588383E27B4B39400DE0592 /* Trailer.png in Resources */ = {isa = PBXBuildFile; fileRef = 1588383927B4B39400DE0592 /* Trailer.png */; };
+		1588383F27B4B39400DE0592 /* rain.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1588383A27B4B39400DE0592 /* rain.jpg */; };
 		15A1185927B152C2000D17CD /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A1185827B152C2000D17CD /* DetailViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -31,6 +36,11 @@
 		155983AB27ACF51200279423 /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 		155983AD27ACF6BE00279423 /* MovieIO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieIO.swift; sourceTree = "<group>"; };
 		155983AF27ACFFC000279423 /* MovieCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCell.swift; sourceTree = "<group>"; };
+		1588383627B4B39400DE0592 /* Listbullets.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Listbullets.png; sourceTree = "<group>"; };
+		1588383727B4B39400DE0592 /* darknight.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = darknight.jpg; sourceTree = "<group>"; };
+		1588383827B4B39400DE0592 /* secret.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = secret.jpg; sourceTree = "<group>"; };
+		1588383927B4B39400DE0592 /* Trailer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Trailer.png; sourceTree = "<group>"; };
+		1588383A27B4B39400DE0592 /* rain.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = rain.jpg; sourceTree = "<group>"; };
 		15A1185827B152C2000D17CD /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -64,6 +74,7 @@
 		1559839627ACEE4C00279423 /* tableViewProj2 */ = {
 			isa = PBXGroup;
 			children = (
+				1588383527B4B39400DE0592 /* Img */,
 				155983AF27ACFFC000279423 /* MovieCell.swift */,
 				1559839727ACEE4C00279423 /* AppDelegate.swift */,
 				1559839927ACEE4C00279423 /* SceneDelegate.swift */,
@@ -77,6 +88,18 @@
 				155983AD27ACF6BE00279423 /* MovieIO.swift */,
 			);
 			path = tableViewProj2;
+			sourceTree = "<group>";
+		};
+		1588383527B4B39400DE0592 /* Img */ = {
+			isa = PBXGroup;
+			children = (
+				1588383627B4B39400DE0592 /* Listbullets.png */,
+				1588383727B4B39400DE0592 /* darknight.jpg */,
+				1588383827B4B39400DE0592 /* secret.jpg */,
+				1588383927B4B39400DE0592 /* Trailer.png */,
+				1588383A27B4B39400DE0592 /* rain.jpg */,
+			);
+			path = Img;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -138,8 +161,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				155983A427ACEE4D00279423 /* LaunchScreen.storyboard in Resources */,
+				1588383F27B4B39400DE0592 /* rain.jpg in Resources */,
+				1588383D27B4B39400DE0592 /* secret.jpg in Resources */,
+				1588383B27B4B39400DE0592 /* Listbullets.png in Resources */,
 				155983A127ACEE4D00279423 /* Assets.xcassets in Resources */,
 				1559839F27ACEE4C00279423 /* Main.storyboard in Resources */,
+				1588383E27B4B39400DE0592 /* Trailer.png in Resources */,
+				1588383C27B4B39400DE0592 /* darknight.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
