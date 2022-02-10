@@ -12,10 +12,6 @@ import UIKit
  *이곳에 IB(Interface Builder)의 VC(ViewController)안 Cell에서 추가한 레이블들의 아울렛 변수를 만든다. *
  */
 class TheaterCell: UITableViewController {
-    @IBOutlet var name: UILabel!
-    @IBOutlet var addr: UILabel!
-    @IBOutlet var tel: UILabel!
-    
     var list = [NSDictionary]()
     var startPoint = 0;
     
