@@ -5,3 +5,7 @@
 
 - master 브랜치와 develop 두개의 브랜치가 존재합니다.
 공부 작업을 진행할 때 develop 브랜치에서 진행한 후 merge를 통해 master에 최종적인 결과물을 합치는 방식입니다.
+
+**TableViewProject** file 안에 있는 
+  - TableViewProject 프로젝트 == ch8~ch10.
+  - tableViewProj2 프로젝트 == (ch8)ch11 ~ ch13.
