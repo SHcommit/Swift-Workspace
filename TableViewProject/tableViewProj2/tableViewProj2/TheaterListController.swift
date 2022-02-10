@@ -11,7 +11,7 @@ import UIKit
  *영화관 정보 tab > tableView Cell의 클래스이다.
  *이곳에 IB(Interface Builder)의 VC(ViewController)안 Cell에서 추가한 레이블들의 아울렛 변수를 만든다. *
  */
-class TheaterCell: UITableViewController {
+class TheaterListController: UITableViewController {
     var list = [NSDictionary]()
     var startPoint = 0;
     
@@ -49,7 +49,7 @@ class TheaterCell: UITableViewController {
      *tableView(_:numberOfRowsInSection:)으로 행 개수 반환 후
      *tableView(_:cellForRowAt:)로 어느 cell인지 찾은 후에, 그 cell의 아울렛 변수에 특정 list 데이터인 obj의 값을 대입한다.
      *이때 주의할 점은 dequeueReusableCell(withIdentifier:)은 UITableViewCell로 반환한다.
-     *UITableViewController를 상속받은  TheaterCell클래스를 구현했으므로
+     *UITableViewCell를 상속받은  TheaterCell클래스를 구현했으므로
      *캐스팅을 해야 내가 정의한 아울렛 변수를 사용할 수 있다.
      *끝!
      */
@@ -58,7 +58,13 @@ class TheaterCell: UITableViewController {
     }
     /**
      *내가 한 실수.
-     **
+     *tableViewCell에 레이블을 3개 정의했다.
+     *태그와 다르게 아울렛 변수로 연결하려면 tableViewCell 타입에 맞는 클래스를 직접 만들어서 그곳에 정의 해야한다.
+     *프로토타입 셀을 제어할 클래스를 직접 만들어야 한다.
+     *  하지만 난 그냥 TableViewController 클래스에 만들었다. 이렇게 만드니까 아래 메서드에서 오류가 발생한다.
+     *   반환값이 TableViewController라고, 반환값을 as! TableViewCell로 변경했는데 역시 당연하게 오류가 발생했다.
+     *   이미 TableViewController를 상속받았기에 TableViewCell은 당연히 상속 받을 수 없다.
+     *결론. TableViewCell을 타입으로하는 클래스를 한개 더 만든 후 tableviewCell IB와 연결시켜야 한다.*
      */
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let obj = self.list[indexPath.row]
@@ -68,6 +74,6 @@ class TheaterCell: UITableViewController {
         cell.tel?.text = obj["연락처"] as? String
         cell.addr?.text = obj["소재지도로명주소"] as? String
         
-        return cell as! UITableViewCell
+        return cell
     }
 }
