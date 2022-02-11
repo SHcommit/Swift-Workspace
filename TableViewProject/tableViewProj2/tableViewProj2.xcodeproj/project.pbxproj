@@ -24,6 +24,8 @@
 		1588384127B4C91A00DE0592 /* TheaterListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1588384027B4C91A00DE0592 /* TheaterListController.swift */; };
 		15A1185927B152C2000D17CD /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A1185827B152C2000D17CD /* DetailViewController.swift */; };
 		15CF6AA127B4F5C400B15A16 /* TheaterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15CF6AA027B4F5C400B15A16 /* TheaterCell.swift */; };
+		15CF6AA427B50BFD00B15A16 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15CF6AA327B50BFD00B15A16 /* MapKit.framework */; };
+		15CF6AA627B52FF500B15A16 /* TheaterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15CF6AA527B52FF500B15A16 /* TheaterViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +48,8 @@
 		1588384027B4C91A00DE0592 /* TheaterListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TheaterListController.swift; sourceTree = "<group>"; };
 		15A1185827B152C2000D17CD /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		15CF6AA027B4F5C400B15A16 /* TheaterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TheaterCell.swift; sourceTree = "<group>"; };
+		15CF6AA327B50BFD00B15A16 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		15CF6AA527B52FF500B15A16 /* TheaterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TheaterViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +57,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				15CF6AA427B50BFD00B15A16 /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -64,6 +69,7 @@
 			children = (
 				1559839627ACEE4C00279423 /* tableViewProj2 */,
 				1559839527ACEE4C00279423 /* Products */,
+				15CF6AA227B50BFD00B15A16 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -84,6 +90,7 @@
 				1559839927ACEE4C00279423 /* SceneDelegate.swift */,
 				1559839B27ACEE4C00279423 /* ViewController.swift */,
 				1559839D27ACEE4C00279423 /* Main.storyboard */,
+				15CF6AA527B52FF500B15A16 /* TheaterViewController.swift */,
 				1588384027B4C91A00DE0592 /* TheaterListController.swift */,
 				15CF6AA027B4F5C400B15A16 /* TheaterCell.swift */,
 				15A1185827B152C2000D17CD /* DetailViewController.swift */,
@@ -106,6 +113,14 @@
 				1588383A27B4B39400DE0592 /* rain.jpg */,
 			);
 			path = Img;
+			sourceTree = "<group>";
+		};
+		15CF6AA227B50BFD00B15A16 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				15CF6AA327B50BFD00B15A16 /* MapKit.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -192,6 +207,7 @@
 				1559839827ACEE4C00279423 /* AppDelegate.swift in Sources */,
 				155983AC27ACF51200279423 /* ListViewController.swift in Sources */,
 				1559839A27ACEE4C00279423 /* SceneDelegate.swift in Sources */,
+				15CF6AA627B52FF500B15A16 /* TheaterViewController.swift in Sources */,
 				15A1185927B152C2000D17CD /* DetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
