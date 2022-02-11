@@ -88,4 +88,15 @@ class TheaterListController: UITableViewController {
         
         return cell
     }
+    
+    //MARK - 맵킷 정보. TheaterViewController로 데이터보내기
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "segue_map" {
+            let path = self.tableView.indexPath(for: sender as! UITableViewCell)
+            
+            let data = self.list[path!.row]
+            
+            (segue.destination as? TheaterViewController)?.param = data
+        }
+    }
 }
