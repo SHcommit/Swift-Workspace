@@ -3,7 +3,7 @@
 //  AutoResizing-Practice
 //
 //  Created by 양승현 on 2022/02/11.
-//
+//  Add autoLayout
 
 import UIKit
 
